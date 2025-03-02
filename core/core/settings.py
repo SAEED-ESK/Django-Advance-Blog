@@ -39,11 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'blog',
-<<<<<<< Updated upstream
-=======
     'rest_framework',
     'django_filters',
->>>>>>> Stashed changes
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

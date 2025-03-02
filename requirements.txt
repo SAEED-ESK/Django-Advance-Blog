@@ -1,9 +1,6 @@
 # general modules
 django >3.2, <3.3
 python-decouple
-<<<<<<< Updated upstream
-pillow
-=======
 pillow
 djangorestframework
 
@@ -13,4 +10,3 @@ django-filter
 drf-yasg[validation]
 
 # deployment modules
->>>>>>> Stashed changes
