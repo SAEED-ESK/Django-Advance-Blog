@@ -3,9 +3,13 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    GenericAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework import mixins
-from rest_framework import viewsets 
+from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
@@ -14,10 +18,12 @@ from ...models import Post, Category
 from .permissions import IsAuthorOrReadOnly
 from .paginations import DefaultPagination
 
+
 class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
 
 class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
@@ -25,9 +31,9 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     pagination_class = DefaultPagination
-    filterset_fields = {'author': ['exact'], 'category': ['exact', 'in']}
-    search_fields = ['title', 'content']
-    ordering_fields = ['published_date']
+    filterset_fields = {"author": ["exact"], "category": ["exact", "in"]}
+    search_fields = ["title", "content"]
+    ordering_fields = ["published_date"]
 
 
 # class PostViewSet(viewsets.ViewSet):
@@ -56,16 +62,14 @@ class PostViewSet(viewsets.ModelViewSet):
 #         serializer.is_valid()
 #         serializer.save()
 #         return Response(serializer.data)
-    
+
 #     def destroy(self, request, pk=None):
 #         post_object = get_object_or_404(self.queryset, pk=pk)
 #         post_object.delete()
 #         return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)
 
 
-
-
-'''@api_view(['GET', 'POST'])
+"""@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def postListApi(request):
     if request.method == 'GET':
@@ -76,9 +80,9 @@ def postListApi(request):
         serializer = PostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)'''
+        return Response(serializer.data)"""
 
-'''class PostListApi(APIView):
+"""class PostListApi(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
 
@@ -91,7 +95,8 @@ def postListApi(request):
         serializer = PostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)'''
+        return Response(serializer.data)"""
+
 
 class PostListApi(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -99,8 +104,7 @@ class PostListApi(ListCreateAPIView):
     queryset = Post.objects.all()
 
 
-
-'''@api_view(['GET', 'PUT', 'DELETE'])
+"""@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def postDetailApi(request, id):
     post = get_object_or_404(Post, pk=id)
@@ -114,9 +118,9 @@ def postDetailApi(request, id):
         return Response(serializer.data)
     elif request.method == 'DELETE':
         post.delete()
-        return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)'''
+        return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)"""
 
-'''
+"""
 class PostDetailApi(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
@@ -137,7 +141,8 @@ class PostDetailApi(APIView):
         post = get_object_or_404(Post, pk=id)
         post.delete()
         return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)
-'''
+"""
+
 
 class PostDetailApi(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]

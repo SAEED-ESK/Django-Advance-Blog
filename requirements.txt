@@ -8,5 +8,14 @@ djangorestframework
 markdown
 django-filter
 drf-yasg[validation]
+
+# email third party modules
 django-mail-templated
+
 # deployment modules
+
+# refactoring and tests
+black
+flakc8
+pytest
+pytest-django
