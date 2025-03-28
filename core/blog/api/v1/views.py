@@ -1,18 +1,18 @@
-from rest_framework.decorators import api_view, permission_classes
+# from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework import status
+# from rest_framework.views import APIView
 from rest_framework.generics import (
-    GenericAPIView,
+    # GenericAPIView,
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from rest_framework import mixins
+# from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-from django.shortcuts import get_object_or_404
+# from django.shortcuts import get_object_or_404
 from .serializers import PostSerializer, CategorySerializer
 from ...models import Post, Category
 from .permissions import IsAuthorOrReadOnly
@@ -66,7 +66,8 @@ class PostViewSet(viewsets.ModelViewSet):
 #     def destroy(self, request, pk=None):
 #         post_object = get_object_or_404(self.queryset, pk=pk)
 #         post_object.delete()
-#         return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)
+#         return Response({'detail': 'Post deleted'},
+#                         status=status.HTTP_204_NO_CONTENT)
 
 
 """@api_view(['GET', 'POST'])
@@ -90,7 +91,7 @@ def postListApi(request):
         post = Post.objects.all()
         serializer = PostSerializer(post, many=True)
         return Response(serializer.data)
-    
+
     def post(self,request):
         serializer = PostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -118,7 +119,8 @@ def postDetailApi(request, id):
         return Response(serializer.data)
     elif request.method == 'DELETE':
         post.delete()
-        return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)"""
+        return Response({'detail': 'Post deleted'},
+                        status=status.HTTP_204_NO_CONTENT)"""
 
 """
 class PostDetailApi(APIView):
@@ -129,7 +131,7 @@ class PostDetailApi(APIView):
         post = get_object_or_404(Post, pk=id)
         serializer = PostSerializer(post)
         return Response(serializer.data)
-    
+
     def put(self,request, id):
         post = get_object_or_404(Post, pk=id)
         serializer = PostSerializer(post, data=request.data)
@@ -140,7 +142,8 @@ class PostDetailApi(APIView):
     def delete(self,request, id):
         post = get_object_or_404(Post, pk=id)
         post.delete()
-        return Response({'detail': 'Post deleted'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'detail': 'Post deleted'},
+                        status=status.HTTP_204_NO_CONTENT)
 """
 
 

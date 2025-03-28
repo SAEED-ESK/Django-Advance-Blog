@@ -2,3 +2,7 @@
 exclude =
     .git,
     __pycache__,
+    settings.py,
+    /core/core/settings.py
+
+extend-ignore = E501

@@ -54,7 +54,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         if attrs["password1"] != attrs["password"]:
-            raise serializers.ValidationError({"detail": "passwords doesnt match!"})
+            raise serializers.ValidationError(
+                {"detail": "passwords doesnt match!"}
+            )
 
         try:
             validate_password(attrs["password"])
@@ -86,7 +88,9 @@ class ChangePasswordSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs["new_password"] != attrs["new_password1"]:
-            raise serializers.ValidationError({"detail": "passwords doesnt match!"})
+            raise serializers.ValidationError(
+                {"detail": "passwords doesnt match!"}
+            )
 
         try:
             validate_password(attrs["new_password"])
@@ -101,7 +105,14 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ["id", "email", "first_name", "last_name", "image", "description"]
+        fields = [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "image",
+            "description",
+        ]
 
 
 class ActivationResendSerializer(serializers.Serializer):
@@ -112,7 +123,9 @@ class ActivationResendSerializer(serializers.Serializer):
         try:
             user_obj = User.objects.get(email=email)
         except User.DoesNotExist:
-            raise serializers.ValidationError({"details": "User does not exist"})
+            raise serializers.ValidationError(
+                {"details": "User does not exist"}
+            )
 
         if user_obj.is_verified:
             raise serializers.ValidationError({"details": "already verified"})

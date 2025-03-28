@@ -9,7 +9,8 @@ from accounts.models import Profile
 
 class PostSerializer(serializers.ModelSerializer):
     post_url = serializers.SerializerMethodField()
-    # category = serializers.SlugRelatedField(many=False, slug_field='name', queryset=Category.objects.all())
+    # category = serializers.SlugRelatedField(
+    #       many=False, slug_field='name', queryset=Category.objects.all())
 
     class Meta:
         model = Post
